@@ -1,10 +1,15 @@
 <template>
-    <div>
-        Show
-    </div>
-<Link href="/"> Main Page</Link>
+
+<div>
+    Index
+</div>
+<div>
+  The Message is: {{ message }}
+</div>
+
 </template>
 
 <script setup>
  import {Link} from '@inertiajs/vue3';
 </script>
+
