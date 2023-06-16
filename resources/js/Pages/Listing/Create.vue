@@ -75,14 +75,14 @@
     <script setup>
     import { useForm } from '@inertiajs/vue3'
     const form = useForm({
-    beds: 0,
-    baths: 0,
-    area: 0,
+    beds: null,
+    baths: null,
+    area: null,
     city: null,
     street: null,
     code: null,
     street_nr: null,
-    price: 0,
+    price: null,
     })
     const create = () => form.post('/listing')
     </script>

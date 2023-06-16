@@ -9,6 +9,10 @@
     <div>
       <Link :href="`/listing/${listing.id}/edit`">Edit</Link>
     </div>
+    <div>
+      <!-- Default method in Inertia Link is Get, But we can use another like Delete Methos-->
+      <Link :href="`/listing/${listing.id}`" method="DELETE" as="button">Delete</Link>
+    </div>
 </div>
 
 </template>
