@@ -84,7 +84,7 @@
     street_nr: null,
     price: null,
     })
-    const create = () => form.post('/listing')
+    const create = () => form.post(route('listing.store'))
     </script>
   
   <style scoped>
@@ -95,4 +95,4 @@
   div {
     padding: 2px
   }
-  </style>
+  </style>'
