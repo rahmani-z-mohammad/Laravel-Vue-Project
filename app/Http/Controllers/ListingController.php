@@ -56,7 +56,7 @@ class ListingController extends Controller
         );
 
         return redirect() -> route('listing.index')
-        ->with('success', 'Listing was creating!');
+        ->with('success', 'Listing was created!');
 
     }
 
