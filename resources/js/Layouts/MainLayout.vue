@@ -7,7 +7,7 @@
         <Link :href="route('listing.index')"> Listing</Link>
       </div>
       <div class="text-lg">
-        <Link :href="route('listing.create')" class="bg-blue-900 hover:bg-blue-600 text-white font-medium p-2 rounded-md"> +New Listing</Link>
+        <Link :href="route('listing.create')" class="btn-primary"> +New Listing</Link>
       </div>
     </nav>
   </div>
