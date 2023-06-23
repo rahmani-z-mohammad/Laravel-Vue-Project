@@ -43,7 +43,14 @@ class HandleInertiaRequests extends Middleware
                  also by Intertia Midleware we can share data and messages dialog to all Vue pages
                  */
                 'success' => $request->session()->get('success')
-            ]
+            ],
+                     // if true ? then ...
+            'user' => $request->user() ? [
+
+                'id' => $request->user()->id,
+                'name' => $request->user()->name,
+                'email' => $request->user()->email
+            ] : null
         ]);
     }
 }
