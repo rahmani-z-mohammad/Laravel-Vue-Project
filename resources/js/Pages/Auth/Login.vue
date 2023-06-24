@@ -14,6 +14,13 @@
             </div>
             <div class="mt-4">
                 <button class="btn-primary w-full" type="submit">Log in</button>
+
+                <div class="mt-2 text-center">
+                <Link :href="route('user-account.create')" class="text-sm text-gray-500">
+                    Create account? Click here
+                </Link>
+                </div>
+
             </div>
         </div>
     </form>
@@ -21,7 +28,7 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { useForm, Link } from '@inertiajs/vue3';
 
 // inertia collect all laravel errors that happen in backend and all of them are avalible in vue frontend
 // form.errors.email
