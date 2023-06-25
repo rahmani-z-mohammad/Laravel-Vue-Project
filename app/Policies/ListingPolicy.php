@@ -11,7 +11,7 @@ class ListingPolicy
     /**
      * Determine whether the user can view any models.
      * 
-     * ? before the class mean optional
+     * ? before the class mean optional and allow everyone to access the content
      * 
      * viewAny call before the index function in ListingController
      */
@@ -41,7 +41,7 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        return true;
+        return $user->id == $listing->by_user_id;
     }
 
     /**
@@ -49,7 +49,7 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing)
     {
-        return true;
+        return $user->id == $listing->by_user_id;
     }
 
     /**
@@ -57,7 +57,7 @@ class ListingPolicy
      */
     public function restore(User $user, Listing $listing)
     {
-        return true;
+        return $user->id == $listing->by_user_id;
     }
 
     /**
@@ -65,6 +65,6 @@ class ListingPolicy
      */
     public function forceDelete(User $user, Listing $listing)
     {
-        return true;
+        return $user->id == $listing->by_user_id;
     }
 }
