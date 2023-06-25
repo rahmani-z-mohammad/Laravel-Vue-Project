@@ -12,6 +12,8 @@ class ListingController extends Controller
     The ways how apply the users are authorize to perform action or not through the Model Policy
 
     Thirth Way and the simplast way
+
+    'listing' name of the parameter
     */
 
     public function __construct()
