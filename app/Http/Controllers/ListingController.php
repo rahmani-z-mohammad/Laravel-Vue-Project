@@ -4,9 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
+    /*
+    The ways how apply the users are authorize to perform action or not through the Model Policy
+
+    Thirth Way and the simplast way
+    */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Listing::class, 'listing');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -26,6 +38,7 @@ class ListingController extends Controller
      */
     public function create()
     {
+        //$this->authorize('create', Listing::class);
         return inertia('Listing/Create');
     }
 
@@ -64,6 +77,23 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+        // The ways to apply users are authorize to perform action or not through the Model Policy
+
+        /*
+        - First Way
+        if(Auth::user()->cannot('view', $listing)){
+            abort(403);
+        }
+        */
+
+        /*
+        do the above action. check if the current user is authorize to perform this view operaion on $listing model
+        if not automaticlly return 403 error
+
+        -Second Way
+        $this->authorize('view', $listing);
+        */
+
         return inertia(
             'Listing/Show',
             [
