@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\PseudoTypes\List_;
 
 class ListingController extends Controller
 {
@@ -40,9 +39,9 @@ class ListingController extends Controller
         $listing -> beds = $request->beds;
         $listing -> save();
         */
-        // when we have fillable all colmn in Model(Listing), then we cann all store by create function through the Listing object
-        
-        Listing::create(
+        // when we have fillable all column in Model(Listing), then we cann all store by create function through the Listing object Listing::create()
+
+        $request->user()->listings()->create(
                 $request->validate([
                 'beds' => 'required|integer|min:0|max:20',
                 'baths' => 'required|integer|min:0|max:20',
