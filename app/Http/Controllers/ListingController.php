@@ -11,7 +11,7 @@ class ListingController extends Controller
     /*
     The ways how apply the users are authorize to perform action or not through the Model Policy
 
-    Thirth Way and the simplast way
+    Thirth Way and the simplist way
 
     'listing' name of the parameter
     */
@@ -29,7 +29,8 @@ class ListingController extends Controller
         return inertia(
             'Listing/Index',
             [
-                'listings'=>Listing::all()
+                'listings'=>Listing::orderByDesc('created_at')
+                    ->paginate(10)
             ]   
     
             );
