@@ -1,5 +1,5 @@
 <template>
-    <Filters/>
+    <Filters :filters="filters"/>
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
@@ -7,7 +7,7 @@
 
     </div>
 
-    <div v-if="listings.data.length" class="w-full flex justify-center mt-8 mb-8">
+    <div v-if="listings.data.length" class="w-full flex justify-center mt-4 mb-4">
         <Pagination :links="listings.links"/>
     </div>
 
@@ -21,7 +21,9 @@ import Listing from '@/Pages/Listing/Index/Components/Listing.vue'
 import Filters from '@/Pages/Listing/Index/Components/Filters.vue';
 
 defineProps({
-    // object while Listing controller with pagination return an object
+    // listings: Object while Listing controller with pagination return an object
     listings: Object,
+// After copy pase url link or send the page link to someone or refresh, the filter form dont lose the data and have the filtered data form
+    filters: Object
 })
 </script>
