@@ -5,9 +5,17 @@ namespace App\Policies;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use PhpParser\Node\Stmt\Return_;
 
 class ListingPolicy
 {
+    // if we want to override every generallt action, then we check our users permission like Admin or User
+    // this function run before all below methods
+    public function before(?User $user, $ability){
+        if($user->is_admin /*&& $ability === 'update'*/){
+            return true;
+        }
+    }
     /**
      * Determine whether the user can view any models.
      * 
