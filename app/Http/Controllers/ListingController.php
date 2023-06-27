@@ -33,32 +33,19 @@ class ListingController extends Controller
         /*
         - The when method allows youe to conditionally build queries.
         - ?? false by this way when some filter fields are emty then we dont have error by clicking pagination
+
+        scopeMostRecent() is Local query scope function that we define in Model to be reusable any evrywhere,
+        but in controller we use just mostRecent() without scope writing at first of function.
         */
 
         return inertia(
             'Listing/Index',
             [
                 'filters' => $filters,
-                'listings'=> Listing::orderByDesc('created_at')
-                ->when(
-                    $filters['priceFrom'] ?? false,
-                    fn($query, $value)=>$query->where('price', '>=', $value)
-                )->when(
-                    $filters['priceTo'] ?? false,
-                    fn($query, $value)=>$query->where('price', '<=', $value)
-                )->when(
-                    $filters['beds'] ?? false,
-                    fn($query, $value)=>$query->where('beds', (int)$value < 6 ? '=' : '>=', $value)
-                )->when(
-                    $filters['baths'] ?? false,
-                    fn($query, $value)=>$query->where('baths', (int)$value < 6 ? '=' : '>=', $value)
-                )->when(
-                    $filters['areaFrom'] ?? false,
-                    fn($query, $value)=>$query->where('area', '>=', $value)
-                )->when(
-                    $filters['areaTo'] ?? false,
-                    fn($query, $value)=>$query->where('area', '<=', $value)
-                )->paginate(10)->withQueryString()
+                'listings'=> Listing::mostRecent()
+                ->filter($filters)
+                ->paginate(10)
+                ->withQueryString()
                 // withQueryString() we dont lose the url filter data when clicking on pages
             ]   
     
