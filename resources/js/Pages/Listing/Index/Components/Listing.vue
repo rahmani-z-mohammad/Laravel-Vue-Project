@@ -15,10 +15,6 @@
         <div>
             <Link :href="route('listing.edit', { listing: listing.id })">Edit</Link>
         </div>
-        <div>
-            <!-- Default method in Inertia Link is Get, But we can use another like Delete Methos-->
-            <Link :href="route('listing.destroy', { listing: listing.id })" method="DELETE" as="button">Delete</Link>
-        </div>
     </Box>
 </template>
 
