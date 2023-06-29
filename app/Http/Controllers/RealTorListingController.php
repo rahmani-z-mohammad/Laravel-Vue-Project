@@ -17,12 +17,23 @@ class RealTorListingController extends Controller
     public function Index(Request $request)
     {
         //listings() defined before in User Model that User has many listings
-        //dd(Auth::user()->listings);
+        //dd($request->all());
+
+        $filters = [
+            'deleted' => $request->boolean('deleted'),
+            ...$request -> only(['by', 'order'])
+        ];
         
         return inertia(
             'Realtor/Index', 
-            ['listings' => Auth::user()->listings]
-        );
+            [
+                // Pass to view Realtor index
+                'filters' => $filters,
+                'listings' => Auth::user()->listings()
+                //->mostRecent()
+                ->filter($filters)
+                ->get()
+            ]);
     }
 
     /**
