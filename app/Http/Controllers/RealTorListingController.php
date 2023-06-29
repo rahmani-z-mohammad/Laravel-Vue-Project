@@ -122,4 +122,10 @@ class RealTorListingController extends Controller
     return redirect() -> route('realtor.listing.index')
     ->with('success', 'Listing was Updated!');
     }
+
+    public function restore(Listing $listing){
+        $listing->restore();
+
+        return redirect() -> back() ->with('success', 'Listing was restored!');
+    }
 }
