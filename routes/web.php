@@ -27,11 +27,9 @@ middleware('auth') athenticate our app routes.
 
 for this reason we use recourse with except function again.
 */
+
 Route::resource('listing', ListingController::class)
-->only(['create', 'store','edit', 'update'])
-->middleware('auth');
-Route::resource('listing', ListingController::class)
-  ->except(['create', 'store', 'edit', 'update']);
+  ->only(['index', 'show']);
   
 Route::get('login', [AuthController::class, 'create']) -> name('login');
 
@@ -47,5 +45,5 @@ Route::prefix('realtor')
 ->middleware('auth')
 ->group(function () {
   Route::resource('listing', RealTorListingController::class)
-    ->only('index', 'destroy');
+    ->only('index', 'destroy','edit', 'update', 'create', 'store');
 });
