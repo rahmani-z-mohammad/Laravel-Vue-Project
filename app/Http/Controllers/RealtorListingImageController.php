@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use App\Models\ListingImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Expr\List_;
 
 class RealtorListingImageController extends Controller
 {
     public function create(Listing $listing)
     {
+        //by load() method we can find all the model
+        $listing->load(['images']);
         return inertia(
             'Realtor/ListingImage/Create',
             ['listing' => $listing]
@@ -35,5 +39,16 @@ class RealtorListingImageController extends Controller
 
         }
         return redirect()->back()->with('success', 'Images Uploaded!');
+    }
+
+    public function destroy($listing, ListingImage $image) {
+        
+        //delete from the storage
+        Storage::disk('public')->delete($image->filename);
+
+        //delete from the database
+        $image->delete();
+
+        return redirect()->back()->with('success', 'Image was deleted!');
     }
 }

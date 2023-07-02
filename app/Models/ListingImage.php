@@ -11,9 +11,15 @@ class ListingImage extends Model
     use HasFactory;
 
     protected $fillable = ['filename'];
+    protected $appends = ['src'];
 
     public function listing(): BelongsTo {
         // we dont write the second argument column name while Laravel know autumaticlly the primary and forign key
         return $this->belongsTo(Listing::class);
+    }
+
+    //getRealSrcAttribute -> real_src
+    public function getSrcAttribute(){
+        return asset("storage/{$this->filename}");
     }
 }
