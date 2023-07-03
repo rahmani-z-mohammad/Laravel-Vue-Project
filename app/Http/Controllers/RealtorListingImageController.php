@@ -28,6 +28,13 @@ class RealtorListingImageController extends Controller
         //hasFile method Check files uploaded
         if($request->hasFile('images')){
 
+            $request->validate([
+                //.* means that the ruls should apply to all elements
+                'images.*' => 'mimes:jpg,png,jpeg,webp|max:5000'
+            ], [
+                'images.*.mimes' => 'The file should be in one of the formats: jpg, png, jpeg, webp'
+            ]);
+            
             //file method return all the uploaded files
             foreach ($request->file('images') as $file){
                 $path = $file->store('images', 'public');

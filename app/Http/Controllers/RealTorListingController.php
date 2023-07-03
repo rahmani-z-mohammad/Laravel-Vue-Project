@@ -31,6 +31,7 @@ class RealTorListingController extends Controller
                 'filters' => $filters,
                 'listings' => Auth::user()->listings()
                 ->filter($filters)
+                ->withcount('images') // count how many image listing relation has
                 ->paginate(8)
                 ->withQueryString()
                 // withQueryString() we dont lose the url filter data when clicking on pages

@@ -40,7 +40,7 @@
 
                     <div class="mt-2">
                         <Link :href="route('realtor.listing.image.create',{ listing: listing.id})"
-                        class="block w-full btn-outline text-xs font-medium text-center">Upload Images</Link>
+                        class="block w-full btn-outline text-xs font-medium text-center">Images ({{ listing.images_count }})</Link>
                     </div>
                 </section>
             </div>
