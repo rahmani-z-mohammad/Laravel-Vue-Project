@@ -3,10 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListingOfferController;
 use App\Http\Controllers\RealTorListingController;
 use App\Http\Controllers\RealtorListingImageController;
 use App\Http\Controllers\UserAccountController;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +32,9 @@ for this reason we use recourse with except function again.
 
 Route::resource('listing', ListingController::class)
   ->only(['index', 'show'])->withTrashed();
+
+Route::resource('listing.offer', ListingOfferController::class)
+->middleware('auth')->only(['store']);
   
 Route::get('login', [AuthController::class, 'create']) -> name('login');
 

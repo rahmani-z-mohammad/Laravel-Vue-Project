@@ -23,7 +23,7 @@ return new class extends Migration
                 \App\Models\User::class, 'bidder_id'
             )->constrained('users');
 
-            $table->unsignedInteger('ammount');
+            $table->unsignedInteger('amount');
 
             $table->timestamp('accepted_at')->nullable();
             $table->timestamp('rejected_at')->nullable();
