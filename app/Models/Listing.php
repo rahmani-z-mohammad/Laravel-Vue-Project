@@ -22,12 +22,16 @@ class Listing extends Model
     ];
     
     public function owner(): BelongsTo{
-        return $this->belongsTo(\App\Models\User::class,'by_user_id');
+        return $this->belongsTo(User::class,'by_user_id');
     }
 
     public function images(): HasMany{
         // we dont write the second argument column name while Laravel know autumaticlly the primary and forign key
         return $this->hasMany(ListingImage::class);
+    }
+
+    public function offers(): HasMany{
+        return $this->hasMany(Offer::class, 'listing_id');
     }
 
     public function scopeMostRecent(Builder $query): Builder{
