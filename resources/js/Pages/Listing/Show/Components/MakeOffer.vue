@@ -27,7 +27,8 @@
 import Box from '@/Components/UI/Box.vue';
 import Price from '@/Components/Price.vue';
 import { useForm } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
+import { debounce } from 'lodash'
 
 
 const props = defineProps({
@@ -50,4 +51,15 @@ const makeOffer = () => form.post(
 const difference = computed(() => form.amount - props.price)
 const min = computed(() => Math.round(props.price / 2))
 const max = computed(() => Math.round(props.price * 2))
+
+/* - defineEmits() same as the defineProps()
+   - debounce() accept one request in 200 ms and prevent more request at the same time
+   - Custom event, passing data to the parent component
+*/
+
+
+const emit = defineEmits(['offerUpdated'])
+
+watch(() => form.amount, 
+debounce ((value) => emit('offerUpdated',value), 200))
 </script>

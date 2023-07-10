@@ -53,8 +53,12 @@
                 </div>
             </Box>
 
-            <!-- listing-id is listingId in MakeOffer Page-->
-            <MakeOffer v-if="user" :listing-id="listing.id" :price="listing.price"/>
+            <!-- listing-id is listingId in MakeOffer Page also @offer-updated is offerUpdated-->
+            <MakeOffer 
+            v-if="user"
+            @offer-updated="offer = $event"
+            :listing-id="listing.id"
+            :price="listing.price"/>
         </div>
     </div>
 
@@ -79,7 +83,9 @@ const props = defineProps({
     listing: Object
 })
 
- const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(props.listing.price, interestRate, duration)
+const offer = ref(props.listing.price)
+
+ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(offer, interestRate, duration)
 
   // Authenticate MakeOffer Components
   const page = usePage()
