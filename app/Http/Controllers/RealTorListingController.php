@@ -40,9 +40,10 @@ class RealTorListingController extends Controller
     }
 
     public function show(Listing $listing){
+            //offers is in listing Model and bidder is in offer Model  - both one to many relationship
             return inertia(
                 'Realtor/Show',
-                ['listing' => $listing->load('offers')]
+                ['listing' => $listing->load('offers', 'offers.bidder')]
             );
     }
 

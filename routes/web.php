@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ListingOfferController;
+use App\Http\Controllers\RealtorListingAcceptOfferController;
 use App\Http\Controllers\RealTorListingController;
 use App\Http\Controllers\RealtorListingImageController;
 use App\Http\Controllers\UserAccountController;
@@ -59,6 +60,10 @@ Route::prefix('realtor')
   Route::resource('listing', RealTorListingController::class)
     //->only('index', 'destroy','edit', 'update', 'create', 'store')
     ->withTrashed();
+
+    // put() we are to modifying an existing resource not creating anything. modifying an offer
+    // for modifying we are using put or patch
+    Route::name('offer.accept')->put('offer/{offer}/accept', RealtorListingAcceptOfferController::class);
 
     Route::resource('listing.image', RealtorListingImageController::class)
     ->only('create', 'store', 'destroy');
