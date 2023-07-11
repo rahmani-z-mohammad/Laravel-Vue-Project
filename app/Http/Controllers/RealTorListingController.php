@@ -32,10 +32,18 @@ class RealTorListingController extends Controller
                 'listings' => Auth::user()->listings()
                 ->filter($filters)
                 ->withcount('images') // count how many image listing relation has
+                ->withcount('offers')
                 ->paginate(8)
                 ->withQueryString()
                 // withQueryString() we dont lose the url filter data when clicking on pages
             ]);
+    }
+
+    public function show(Listing $listing){
+            return inertia(
+                'Realtor/Show',
+                ['listing' => $listing->load('offers')]
+            );
     }
 
         /**
