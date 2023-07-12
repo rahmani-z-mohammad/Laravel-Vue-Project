@@ -10,15 +10,18 @@ class RealtorListingAcceptOfferController extends Controller
     // single action controller
     public function __invoke(Offer $offer)
     {
-        // acccept selected offer
+        $listing = $offer->listing;
+        $this->authorize('update', $listing);
+
+        // Accept selected offer
         $offer->update(['accepted_at' => now()]);
 
-        $offer->listing->sold_at = now();
-        $offer->listing->save();
+        $listing->sold_at = now();
+        $listing->save();
 
-        // reject all other offers
-        $offer->listing->offers()->except($offer)
-        ->update(['rejected_at' => now()]);
+        // Reject all other offers
+        $listing->offers()->except($offer)
+            ->update(['rejected_at' => now()]);
 
         return redirect()->back()
             ->with(
