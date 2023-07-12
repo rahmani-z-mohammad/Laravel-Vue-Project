@@ -40,12 +40,18 @@ class Listing extends Model
 
     // Sold offers hide from the listing page
     public function scopeWithoutSold(Builder $query): Builder{
+        /*
+        Without adding sold_at column to listings table
         return $query->doesntHave('offers')
             ->orWhereHas(
                 'offers',
                 fn (Builder $query) => $query->whereNull('accepted_at')
                     ->whereNull('rejected_at')
             );
+            */
+
+           // With adding sold_at column to listings table
+            return $query->whereNull('sold_at');
     }
 
     public function scopeFilter(Builder $query, array $filters): Builder{
