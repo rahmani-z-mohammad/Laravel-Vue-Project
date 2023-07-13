@@ -25,7 +25,7 @@ class IndexController extends Controller
         return inertia(
         'Index/Index',
         [
-            'message'=>'Hello From Laravel - Index'
+            'message'=>'Hello! This Project was by Laravel, Vue, Inertia and Tailwind CSS'
         ]   
 
         );
@@ -35,7 +35,7 @@ class IndexController extends Controller
         return inertia(
             'Index/Show',
             [
-                'message'=>'Hello From Laravel- Show'
+                'message'=>'Hello! This Project was by Laravel, Vue, Inertia and Tailwind CSS'
             ]   
     
             );
