@@ -4,7 +4,7 @@ Real-World single page application using Laravel, Vue, Inertia and Tailwind CSS 
 
 ## Whtat I did in this Project:
 
-- Adding With Tailwind CSS
+- Used Tailwind CSS
 - Monthly Payment Calculator Slider Used
 - Authentication and Security
 - Databse Relations and User Authorization
